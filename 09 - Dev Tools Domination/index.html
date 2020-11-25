@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>Console Tricks!</title>
+    </head>
+    
+	<body>
+		<p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+		<script>
+			const p = document.querySelector("p");
+
+			const dogs = [
+				{ name: "Snickers", age: 2 },
+				{ name: "hugo", age: 8 },
+			];
+			
+			function makeGreen() {
+				p.style.color = "#BADA55";
+				p.style.fontSize = "50px";
+			}
+
+			// Regular
+            console.log('This is the commonly used console.log');
+
+			// Interpolated
+            console.log('This is %s', 'interpolation');
+
+			// Styled
+			console.log('%c This is a styled text', 'font-size: 20px; color: crimson; text-shadow: 3px 3px 2px rgba(169, 202, 231, 0.548)');
+
+			// warning!
+			console.warn('This is a warning message');
+
+			// Error :|
+			console.error('This is an error message');
+
+			// Info
+			console.info('This is an info message');
+
+			// Testing
+			console.assert('True' === 'False', 'That is wrong!');
+
+			// clearing
+			/**
+			 * Use when you need it
+			 * console.clear();
+			 */
+
+			// Viewing DOM Elements
+			console.log(p);
+			console.dir(p);
+
+			// Grouping together
+			dogs.forEach(dog => {
+				console.groupCollapsed(`${dog.name}`);
+				console.log(`Name: ${dog.name}`);
+				console.log(`Age: ${dog.age} year(s) old`);
+				console.groupEnd(`${dog.name}`);
+			});
+
+			// counting
+			console.count('This counts the repeated words, numbers, etc');
+			console.count('hello');
+			console.count(1);
+			console.count('bye');
+			console.count(1);
+			console.count('hello');
+			console.count(2);
+			console.count('hello');
+			console.count('bye');
+
+			// timing
+			console.time('fetching data');
+			fetch('https://api.github.com/users/aj-romera')
+			.then(data => data.json())
+			.then(data => {
+				console.timeEnd('fetching data');
+				console.log(data);
+			});
+
+			console.table(dogs);
+
+        </script>
+        
+	</body>
+</html>
