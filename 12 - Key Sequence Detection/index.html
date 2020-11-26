@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <title>Key Detection</title>
+        <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
+    </head>
+
+    <body>
+        <p>Press the secret code <br> The secret code is: <br> <span>ArrowDown ArrowUp a</span></p>
+
+        <style>
+            p {
+                font-size: 40px;
+                text-align: center;
+            }
+            
+            span {
+                font-size: 45px;
+                text-align: center;
+                color: crimson;
+                text-shadow: 1px 2px 3px rgb(160, 180, 67);
+            }
+        </style>
+
+        <script>
+            const pressed = [];
+            const secretCode = 'ArrowDownArrowUpa';
+
+            window.addEventListener('keyup', (e) => {
+                console.log(e.key);
+                pressed.push(e.key);
+
+                /** This is good to check for words, but if you need the key ArrowUp or Backspace for example,
+                * the length of the array is too big because ArrowUp is one input,
+                * but it´s a string of 7 characters making the array bigger than the necessary
+                * One solution is to make a new instance of the array when the secretCode is found
+                */
+                pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+                if (pressed.join('').includes(secretCode)) {
+                    console.log('DING DING!');
+                    cornify_add();
+                }
+                console.log(pressed);
+            });
+        </script>
+    </body>
+
+</html>
